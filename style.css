@@ -33,6 +33,11 @@ h1 {
     justify-content: space-between;
 }
 
+.winning-card {
+    box-shadow: 0px 0px 15px 4px #F9FF19;
+    border-radius: 12px;
+}
+
 #result-display {
     position: absolute;
     top: 33%;

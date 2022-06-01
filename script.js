@@ -92,11 +92,14 @@ $( document ).ready(
                 }
             ).done((data) => {
 
+                removeWinningStyle();
+
                 displayCards(data.cards[0], data.cards[1]);
 
                 compareCards(checkCardValue(data.cards[0].value), checkCardValue(data.cards[1].value));
 
                 displayScores();
+
 
             });
 
@@ -122,14 +125,18 @@ $( document ).ready(
 
             let result;
 
-            if (card1 == card2) {
-                result = 0;
+            console.log("compareCards() card1 = " + card1);
+            console.log("compareCards() card2 = " + card2);
 
+            if (card1 == card2) {
+                console.log("compareCards() -> DRAW")
             } else if (card1 > card2) {
-                result = 1;
+                console.log("compareCards() -> P1 wins !")
+                $("#card-player-1").addClass("winning-card");
                 scoreJ1++;
             } else if (card2 > card1) {
-                result = 2;
+                console.log("compareCards() -> P2 wins !")
+                $("#card-player-2").addClass("winning-card");
                 scoreJ2++;
             }
 
@@ -151,11 +158,11 @@ $( document ).ready(
                 newValue = 13;
             } else if (value == "QUEEN") {
                 newValue = 12;
-            } else if (value == "KING") {
+            } else if (value == "JACK") {
                 newValue = 11;
             }
 
-            return newValue;
+            return parseInt(newValue);
         }
 
         function endGame() {
@@ -175,6 +182,11 @@ $( document ).ready(
                 }
             });
 
+        }
+
+        function removeWinningStyle() {
+            $("#card-player-1").removeClass("winning-card");
+            $("#card-player-2").removeClass("winning-card");
         }
 
     }// Eo main function
